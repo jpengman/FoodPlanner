@@ -1,0 +1,47 @@
+<header ng-switch on="$location.path().indexOf('/RecipeIngredients/new') > -1">
+    <h3 ng-switch-when="true">Create a new RecipeIngredient</h3>
+    <h3 ng-switch-when="false">View or edit RecipeIngredient</h3>
+</header>
+<form id="RecipeIngredientForm" name="RecipeIngredientForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': RecipeIngredientForm.amount.$invalid}">
+        <label for="amount" class="col-sm-2 control-label">Amount</label>
+        <div id="amountControls" class="col-sm-10">
+            <input id="amount" name="amount" type="text" class="form-control" ng-model="recipeIngredient.amount" placeholder="Enter the RecipeIngredient Amount"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': RecipeIngredientForm.amountType.$invalid}">
+        <label for="amountType" class="col-sm-2 control-label">Amount Type</label>
+        <div id="amountTypeControls" class="col-sm-10">
+            <input id="amountType" name="amountType" type="text" class="form-control" ng-model="recipeIngredient.amountType" placeholder="Enter the RecipeIngredient Amount Type"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': RecipeIngredientForm.ingredient.$invalid}">
+        <label for="ingredient" class="col-sm-2 control-label">Ingredient</label>
+        <div id="ingredientControls" class="col-sm-10">
+        <select id="ingredient" name="ingredient" class="form-control" ng-model="ingredientSelection" ng-options="i.text for i in ingredientSelectionList"  >
+            <option value="">Choose a Ingredient</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': RecipeIngredientForm.recipe.$invalid}">
+        <label for="recipe" class="col-sm-2 control-label">Recipe</label>
+        <div id="recipeControls" class="col-sm-10">
+        <select id="recipe" name="recipe" class="form-control" ng-model="recipeSelection" ng-options="r.text for r in recipeSelectionList"  >
+            <option value="">Choose a Recipe</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveRecipeIngredient" name="saveRecipeIngredient" class="btn btn-primary" ng-disabled="isClean() || RecipeIngredientForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteRecipeIngredient" name="deleteRecipeIngredient" class="btn btn-danger" ng-show="recipeIngredient.recipeIngredientsId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

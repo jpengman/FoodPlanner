@@ -58,7 +58,7 @@ public class RecipeEndpoint {
 	public Response findById(@PathParam("id") int id) {
 		TypedQuery<Recipe> findByIdQuery = em
 				.createQuery(
-						"SELECT DISTINCT r FROM Recipe r LEFT JOIN FETCH r.recipeIngredients WHERE r.recipeId = :entityId ORDER BY r.recipeId",
+						"SELECT DISTINCT r FROM Recipe r WHERE r.recipeId = :entityId ORDER BY r.recipeId",
 						Recipe.class);
 		findByIdQuery.setParameter("entityId", id);
 		Recipe entity;
@@ -77,10 +77,9 @@ public class RecipeEndpoint {
 	@Produces("application/json")
 	public List<Recipe> listAll(@QueryParam("start") Integer startPosition,
 			@QueryParam("max") Integer maxResult) {
-		TypedQuery<Recipe> findAllQuery = em
-				.createQuery(
-						"SELECT DISTINCT r FROM Recipe r LEFT JOIN FETCH r.recipeIngredients ORDER BY r.recipeId",
-						Recipe.class);
+		TypedQuery<Recipe> findAllQuery = em.createQuery(
+				"SELECT DISTINCT r FROM Recipe r ORDER BY r.recipeId",
+				Recipe.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);
 		}

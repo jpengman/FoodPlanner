@@ -2,7 +2,6 @@ package se.anviken.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,10 +22,6 @@ public class Ingredient implements Serializable {
 	private String description;
 
 	private String name;
-
-	//bi-directional many-to-one association to RecipeIngredient
-	@OneToMany(mappedBy = "ingredient")
-	private List<RecipeIngredient> recipeIngredients;
 
 	public Ingredient() {
 	}
@@ -53,30 +48,6 @@ public class Ingredient implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<RecipeIngredient> getRecipeIngredients() {
-		return this.recipeIngredients;
-	}
-
-	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-		this.recipeIngredients = recipeIngredients;
-	}
-
-	public RecipeIngredient addRecipeIngredient(
-			RecipeIngredient recipeIngredient) {
-		getRecipeIngredients().add(recipeIngredient);
-		recipeIngredient.setIngredient(this);
-
-		return recipeIngredient;
-	}
-
-	public RecipeIngredient removeRecipeIngredient(
-			RecipeIngredient recipeIngredient) {
-		getRecipeIngredients().remove(recipeIngredient);
-		recipeIngredient.setIngredient(null);
-
-		return recipeIngredient;
 	}
 
 }

@@ -1,6 +1,6 @@
 
 
-angular.module('foodplanner').controller('SearchRecipeIngredientController', function($scope, $http, $filter, RecipeIngredientResource , IngredientResource, RecipeResource) {
+angular.module('foodplanner').controller('SearchRecipeIngredientController', function($scope, $http, $filter, RecipeIngredientResource , AmountTypeResource, IngredientResource, RecipeResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -17,6 +17,7 @@ angular.module('foodplanner').controller('SearchRecipeIngredientController', fun
         }
         return max;
     };
+    $scope.amountTypeList = AmountTypeResource.queryAll();
     $scope.ingredientList = IngredientResource.queryAll();
     $scope.recipeList = RecipeResource.queryAll();
 

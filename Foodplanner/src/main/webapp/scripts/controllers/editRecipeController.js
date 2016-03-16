@@ -1,6 +1,6 @@
 
 
-angular.module('foodplanner').controller('EditRecipeController', function($scope, $routeParams, $location, flash, RecipeResource , RecipeIngredientResource) {
+angular.module('foodplanner').controller('EditRecipeController', function($scope, $routeParams, $location, flash, RecipeResource ) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -9,27 +9,6 @@ angular.module('foodplanner').controller('EditRecipeController', function($scope
         var successCallback = function(data){
             self.original = data;
             $scope.recipe = new RecipeResource(self.original);
-            RecipeIngredientResource.queryAll(function(items) {
-                $scope.recipeIngredientsSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        recipeIngredientsId : item.recipeIngredientsId
-                    };
-                    var labelObject = {
-                        value : item.recipeIngredientsId,
-                        text : item.amount
-                    };
-                    if($scope.recipe.recipeIngredients){
-                        $.each($scope.recipe.recipeIngredients, function(idx, element) {
-                            if(item.recipeIngredientsId == element.recipeIngredientsId) {
-                                $scope.recipeIngredientsSelection.push(labelObject);
-                                $scope.recipe.recipeIngredients.push(wrappedObject);
-                            }
-                        });
-                        self.original.recipeIngredients = $scope.recipe.recipeIngredients;
-                    }
-                    return labelObject;
-                });
-            });
         };
         var errorCallback = function() {
             flash.setMessage({'type': 'error', 'text': 'The recipe could not be found.'});
@@ -76,17 +55,6 @@ angular.module('foodplanner').controller('EditRecipeController', function($scope
         $scope.recipe.$remove(successCallback, errorCallback);
     };
     
-    $scope.recipeIngredientsSelection = $scope.recipeIngredientsSelection || [];
-    $scope.$watch("recipeIngredientsSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.recipe) {
-            $scope.recipe.recipeIngredients = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.recipeIngredientsId = selectedItem.value;
-                $scope.recipe.recipeIngredients.push(collectionItem);
-            });
-        }
-    });
     
     $scope.get();
 });

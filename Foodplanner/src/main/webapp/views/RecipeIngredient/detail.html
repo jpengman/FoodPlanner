@@ -14,7 +14,9 @@
     <div class="form-group" ng-class="{'has-error': RecipeIngredientForm.amountType.$invalid}">
         <label for="amountType" class="col-sm-2 control-label">Amount Type</label>
         <div id="amountTypeControls" class="col-sm-10">
-            <input id="amountType" name="amountType" type="text" class="form-control" ng-model="recipeIngredient.amountType" placeholder="Enter the RecipeIngredient Amount Type"></input>
+        <select id="amountType" name="amountType" class="form-control" ng-model="amountTypeSelection" ng-options="a.text for a in amountTypeSelectionList"  >
+            <option value="">Choose a Amount Type</option>
+        </select>
         </div>
     </div>
 

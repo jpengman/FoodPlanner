@@ -21,14 +21,20 @@ public class RecipeIngredient implements Serializable {
 
 	private String amount;
 
-	@Column(name = "amount_type")
-	private String amountType;
+	//uni-directional many-to-one association to AmountType
+	@ManyToOne
+	@JoinColumn(name = "amount_type_id")
+	private AmountType amountType;
 
-	@Column(name = "ingredient_id")
-	private int ingredientId;
+	//uni-directional many-to-one association to Ingredient
+	@ManyToOne
+	@JoinColumn(name = "ingredient_id")
+	private Ingredient ingredient;
 
-	@Column(name = "recipe_id")
-	private int recipeId;
+	//uni-directional many-to-one association to Recipe
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 
 	public RecipeIngredient() {
 	}
@@ -49,28 +55,28 @@ public class RecipeIngredient implements Serializable {
 		this.amount = amount;
 	}
 
-	public String getAmountType() {
+	public AmountType getAmountType() {
 		return this.amountType;
 	}
 
-	public void setAmountType(String amountType) {
+	public void setAmountType(AmountType amountType) {
 		this.amountType = amountType;
 	}
 
-	public int getIngredientId() {
-		return this.ingredientId;
+	public Ingredient getIngredient() {
+		return this.ingredient;
 	}
 
-	public void setIngredientId(int ingredientId) {
-		this.ingredientId = ingredientId;
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
 	}
 
-	public int getRecipeId() {
-		return this.recipeId;
+	public Recipe getRecipe() {
+		return this.recipe;
 	}
 
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 }

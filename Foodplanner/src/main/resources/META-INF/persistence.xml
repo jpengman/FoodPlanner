@@ -4,9 +4,13 @@
     <description>Foodplanner Persistence Unit</description>
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>java:jboss/datasources/FoodDS</jta-data-source>
+    <class>se.anviken.model.AmountType</class>
+    <class>se.anviken.model.Day</class>
     <class>se.anviken.model.Ingredient</class>
     <class>se.anviken.model.RecipeIngredient</class>
     <class>se.anviken.model.Recipe</class>
+    <class>se.anviken.model.WeekDay</class>
+    <class>se.anviken.model.Week</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
      <properties>
         <!-- Properties for Hibernate -->

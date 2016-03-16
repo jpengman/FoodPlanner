@@ -1,28 +1,9 @@
 
-angular.module('foodplanner').controller('NewIngredientController', function ($scope, $location, locationParser, flash, IngredientResource , RecipeIngredientResource) {
+angular.module('foodplanner').controller('NewIngredientController', function ($scope, $location, locationParser, flash, IngredientResource ) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.ingredient = $scope.ingredient || {};
     
-    $scope.recipeIngredientsList = RecipeIngredientResource.queryAll(function(items){
-        $scope.recipeIngredientsSelectionList = $.map(items, function(item) {
-            return ( {
-                value : item.recipeIngredientsId,
-                text : item.amount
-            });
-        });
-    });
-    $scope.$watch("recipeIngredientsSelection", function(selection) {
-        if (typeof selection != 'undefined') {
-            $scope.ingredient.recipeIngredients = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.recipeIngredientsId = selectedItem.value;
-                $scope.ingredient.recipeIngredients.push(collectionItem);
-            });
-        }
-    });
-
 
     $scope.save = function() {
         var successCallback = function(data,responseHeaders){

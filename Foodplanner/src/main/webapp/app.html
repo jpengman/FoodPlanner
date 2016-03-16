@@ -33,10 +33,18 @@
                         <img class="hidden-xs img-responsive" src="img/forge-logo.png" alt="JBoss Forge"></img>
                     </a>
                     <nav class="sidebar-nav" ng-controller="NavController" role="navigation">
-                        <div id="sidebar-entries" class="list-group">
-                        	<a class="list-group-item" ng-class="{active: matchesRoute('Ingredients')}" href="#/Ingredients" data-toggle="offcanvas">Ingredients</a>
+                        <div id="sidebar-entries-week" class="list-group">
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Weeks')}" href="#/Weeks" data-toggle="offcanvas">Weeks</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('WeekDays')}" href="#/WeekDays" data-toggle="offcanvas">WeekDays</a>
+                        </div>
+                        <div id="sidebar-entries-recipe" class="list-group">
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Recipes')}" href="#/Recipes" data-toggle="offcanvas">Recipes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Ingredients')}" href="#/Ingredients" data-toggle="offcanvas">Ingredients</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('RecipeIngredients')}" href="#/RecipeIngredients" data-toggle="offcanvas">RecipeIngredients</a>
+                        </div>
+                         <div id="sidebar-entries-admin" class="list-group">
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('AmountTypes')}" href="#/AmountTypes" data-toggle="offcanvas">AmountTypes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Days')}" href="#/Days" data-toggle="offcanvas">Days</a>
                         </div>
                     </nav>
                 </div>
@@ -76,6 +84,14 @@
     <script src="scripts/services/flash.js"></script>
     <script src="scripts/services/locationParser.js"></script>
     <script src="scripts/controllers/flashController.js"></script>
+    <script src="scripts/services/AmountTypeFactory.js"></script>
+    <script src="scripts/controllers/newAmountTypeController.js"></script>
+    <script src="scripts/controllers/searchAmountTypeController.js"></script>
+    <script src="scripts/controllers/editAmountTypeController.js"></script>
+    <script src="scripts/services/DayFactory.js"></script>
+    <script src="scripts/controllers/newDayController.js"></script>
+    <script src="scripts/controllers/searchDayController.js"></script>
+    <script src="scripts/controllers/editDayController.js"></script>
     <script src="scripts/services/IngredientFactory.js"></script>
     <script src="scripts/controllers/newIngredientController.js"></script>
     <script src="scripts/controllers/searchIngredientController.js"></script>
@@ -88,5 +104,13 @@
     <script src="scripts/controllers/newRecipeIngredientController.js"></script>
     <script src="scripts/controllers/searchRecipeIngredientController.js"></script>
     <script src="scripts/controllers/editRecipeIngredientController.js"></script>
+    <script src="scripts/services/WeekFactory.js"></script>
+    <script src="scripts/controllers/newWeekController.js"></script>
+    <script src="scripts/controllers/searchWeekController.js"></script>
+    <script src="scripts/controllers/editWeekController.js"></script>
+    <script src="scripts/services/WeekDayFactory.js"></script>
+    <script src="scripts/controllers/newWeekDayController.js"></script>
+    <script src="scripts/controllers/searchWeekDayController.js"></script>
+    <script src="scripts/controllers/editWeekDayController.js"></script>
 </body>
 </html>

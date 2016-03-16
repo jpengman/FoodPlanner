@@ -21,7 +21,9 @@
     <div class="form-group">
         <label for="amountType" class="col-sm-2 control-label">Amount Type</label>
         <div class="col-sm-10">
-            <input id="amountType" name="amountType" class="form-control" type="text" ng-model="search.amountType" placeholder="Enter the RecipeIngredient Amount Type"></input>
+            <select id="amountType" name="amountType" class="form-control" ng-model="search.amountType" ng-options="a as a.amountType for a in amountTypeList">
+                <option value="">Choose a Amount Type</option>
+            </select>
         </div>
     </div>
 
@@ -65,7 +67,7 @@
             <tbody id="search-results-body">
                 <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td><a href="#/RecipeIngredients/edit/{{result.recipeIngredientsId}}">{{result.amount}}</a></td>
-                    <td><a href="#/RecipeIngredients/edit/{{result.recipeIngredientsId}}">{{result.amountType}}</a></td>
+                        <td><a href="#/RecipeIngredients/edit/{{result.recipeIngredientsId}}">{{result.amountType.amountType}}</a></td>
                         <td><a href="#/RecipeIngredients/edit/{{result.recipeIngredientsId}}">{{result.ingredient.description}}</a></td>
                         <td><a href="#/RecipeIngredients/edit/{{result.recipeIngredientsId}}">{{result.recipe.description}}</a></td>
                 </tr>

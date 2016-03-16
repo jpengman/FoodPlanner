@@ -1,6 +1,6 @@
 
 
-angular.module('foodplanner').controller('EditRecipeIngredientController', function($scope, $routeParams, $location, flash, RecipeIngredientResource , IngredientResource, RecipeResource) {
+angular.module('foodplanner').controller('EditRecipeIngredientController', function($scope, $routeParams, $location, flash, RecipeIngredientResource , AmountTypeResource, IngredientResource, RecipeResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -9,6 +9,23 @@ angular.module('foodplanner').controller('EditRecipeIngredientController', funct
         var successCallback = function(data){
             self.original = data;
             $scope.recipeIngredient = new RecipeIngredientResource(self.original);
+            AmountTypeResource.queryAll(function(items) {
+                $scope.amountTypeSelectionList = $.map(items, function(item) {
+                    var wrappedObject = {
+                        amountTypeId : item.amountTypeId
+                    };
+                    var labelObject = {
+                        value : item.amountTypeId,
+                        text : item.amountType
+                    };
+                    if($scope.recipeIngredient.amountType && item.amountTypeId == $scope.recipeIngredient.amountType.amountTypeId) {
+                        $scope.amountTypeSelection = labelObject;
+                        $scope.recipeIngredient.amountType = wrappedObject;
+                        self.original.amountType = $scope.recipeIngredient.amountType;
+                    }
+                    return labelObject;
+                });
+            });
             IngredientResource.queryAll(function(items) {
                 $scope.ingredientSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
@@ -89,6 +106,12 @@ angular.module('foodplanner').controller('EditRecipeIngredientController', funct
         $scope.recipeIngredient.$remove(successCallback, errorCallback);
     };
     
+    $scope.$watch("amountTypeSelection", function(selection) {
+        if (typeof selection != 'undefined') {
+            $scope.recipeIngredient.amountType = {};
+            $scope.recipeIngredient.amountType.amountTypeId = selection.value;
+        }
+    });
     $scope.$watch("ingredientSelection", function(selection) {
         if (typeof selection != 'undefined') {
             $scope.recipeIngredient.ingredient = {};

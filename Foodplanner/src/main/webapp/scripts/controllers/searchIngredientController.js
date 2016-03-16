@@ -1,6 +1,6 @@
 
 
-angular.module('foodplanner').controller('SearchIngredientController', function($scope, $http, $filter, IngredientResource , RecipeIngredientResource) {
+angular.module('foodplanner').controller('SearchIngredientController', function($scope, $http, $filter, IngredientResource ) {
 
     $scope.search={};
     $scope.currentPage = 0;

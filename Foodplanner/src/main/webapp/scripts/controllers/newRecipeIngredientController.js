@@ -1,8 +1,23 @@
 
-angular.module('foodplanner').controller('NewRecipeIngredientController', function ($scope, $location, locationParser, flash, RecipeIngredientResource , IngredientResource, RecipeResource) {
+angular.module('foodplanner').controller('NewRecipeIngredientController', function ($scope, $location, locationParser, flash, RecipeIngredientResource , AmountTypeResource, IngredientResource, RecipeResource) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.recipeIngredient = $scope.recipeIngredient || {};
+    
+    $scope.amountTypeList = AmountTypeResource.queryAll(function(items){
+        $scope.amountTypeSelectionList = $.map(items, function(item) {
+            return ( {
+                value : item.amountTypeId,
+                text : item.amountType
+            });
+        });
+    });
+    $scope.$watch("amountTypeSelection", function(selection) {
+        if ( typeof selection != 'undefined') {
+            $scope.recipeIngredient.amountType = {};
+            $scope.recipeIngredient.amountType.amountTypeId = selection.value;
+        }
+    });
     
     $scope.ingredientList = IngredientResource.queryAll(function(items){
         $scope.ingredientSelectionList = $.map(items, function(item) {

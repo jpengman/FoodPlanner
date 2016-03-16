@@ -1,0 +1,103 @@
+<div class="form-horizontal">
+    <h3>Create a new WeekDay</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/WeekDays/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for WeekDays</h3>
+    <form id="WeekDaySearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="day" class="col-sm-2 control-label">Day</label>
+        <div class="col-sm-10">
+            <select id="day" name="day" class="form-control" ng-model="search.day" ng-options="d as d.dayName for d in dayList">
+                <option value="">Choose a Day</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="breakfastRecipe" class="col-sm-2 control-label">Breakfast Recipe</label>
+        <div class="col-sm-10">
+            <select id="breakfastRecipe" name="breakfastRecipe" class="form-control" ng-model="search.breakfastRecipe" ng-options="b as b.description for b in breakfastRecipeList">
+                <option value="">Choose a Breakfast Recipe</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lunchRecipe" class="col-sm-2 control-label">Lunch Recipe</label>
+        <div class="col-sm-10">
+            <select id="lunchRecipe" name="lunchRecipe" class="form-control" ng-model="search.lunchRecipe" ng-options="l as l.description for l in lunchRecipeList">
+                <option value="">Choose a Lunch Recipe</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="dinnerRecipe" class="col-sm-2 control-label">Dinner Recipe</label>
+        <div class="col-sm-10">
+            <select id="dinnerRecipe" name="dinnerRecipe" class="form-control" ng-model="search.dinnerRecipe" ng-options="d as d.description for d in dinnerRecipeList">
+                <option value="">Choose a Dinner Recipe</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="week" class="col-sm-2 control-label">Week</label>
+        <div class="col-sm-10">
+            <select id="week" name="week" class="form-control" ng-model="search.week" ng-options="w as w.weekNo for w in weekList">
+                <option value="">Choose a Week</option>
+            </select>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Breakfast Recipe</th>
+                    <th>Lunch Recipe</th>
+                    <th>Dinner Recipe</th>
+                    <th>Week</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td><a href="#/WeekDays/edit/{{result.weekDayId}}">{{result.day.dayName}}</a></td>
+                        <td><a href="#/WeekDays/edit/{{result.weekDayId}}">{{result.breakfastRecipe.description}}</a></td>
+                        <td><a href="#/WeekDays/edit/{{result.weekDayId}}">{{result.lunchRecipe.description}}</a></td>
+                        <td><a href="#/WeekDays/edit/{{result.weekDayId}}">{{result.dinnerRecipe.description}}</a></td>
+                        <td><a href="#/WeekDays/edit/{{result.weekDayId}}">{{result.week.weekNo}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

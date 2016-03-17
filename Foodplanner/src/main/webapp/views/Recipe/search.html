@@ -19,6 +19,13 @@
     </div>
 
     <div class="form-group">
+        <label for="image" class="col-sm-2 control-label">Image</label>
+        <div class="col-sm-10">
+            <input id="image" name="image" class="form-control" type="text" ng-model="search.image" placeholder="Enter the Recipe Image"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10">
             <input id="name" name="name" class="form-control" type="text" ng-model="search.name" placeholder="Enter the Recipe Name"></input>
@@ -46,6 +53,7 @@
             <thead>
                 <tr>
                     <th>Description</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Type</th>
                 </tr>
@@ -53,6 +61,7 @@
             <tbody id="search-results-body">
                 <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td><a href="#/Recipes/edit/{{result.recipeId}}">{{result.description}}</a></td>
+                    <td><a href="#/Recipes/edit/{{result.recipeId}}">{{result.image}}</a></td>
                     <td><a href="#/Recipes/edit/{{result.recipeId}}">{{result.name}}</a></td>
                     <td><a href="#/Recipes/edit/{{result.recipeId}}">{{result.type}}</a></td>
                 </tr>

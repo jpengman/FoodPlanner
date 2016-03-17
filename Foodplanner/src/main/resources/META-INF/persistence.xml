@@ -11,6 +11,7 @@
     <class>se.anviken.model.Recipe</class>
     <class>se.anviken.model.WeekDay</class>
     <class>se.anviken.model.Week</class>
+    <class>se.anviken.model.TestTable</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
      <properties>
         <!-- Properties for Hibernate -->

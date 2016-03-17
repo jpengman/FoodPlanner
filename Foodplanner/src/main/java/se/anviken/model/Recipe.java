@@ -21,6 +21,9 @@ public class Recipe implements Serializable {
 
 	private String description;
 
+	@Lob
+	private byte[] image;
+
 	private String name;
 
 	private String type;
@@ -42,6 +45,14 @@ public class Recipe implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public byte[] getImage() {
+		return this.image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public String getName() {

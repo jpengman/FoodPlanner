@@ -33,7 +33,7 @@ angular.module('foodplanner').controller('EditRecipeIngredientController', funct
                     };
                     var labelObject = {
                         value : item.ingredientId,
-                        text : item.description
+                        text : item.name
                     };
                     if($scope.recipeIngredient.ingredient && item.ingredientId == $scope.recipeIngredient.ingredient.ingredientId) {
                         $scope.ingredientSelection = labelObject;
@@ -50,7 +50,7 @@ angular.module('foodplanner').controller('EditRecipeIngredientController', funct
                     };
                     var labelObject = {
                         value : item.recipeId,
-                        text : item.description
+                        text : item.name
                     };
                     if($scope.recipeIngredient.recipe && item.recipeId == $scope.recipeIngredient.recipe.recipeId) {
                         $scope.recipeSelection = labelObject;

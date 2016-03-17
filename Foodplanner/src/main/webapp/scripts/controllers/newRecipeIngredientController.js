@@ -23,7 +23,7 @@ angular.module('foodplanner').controller('NewRecipeIngredientController', functi
         $scope.ingredientSelectionList = $.map(items, function(item) {
             return ( {
                 value : item.ingredientId,
-                text : item.description
+                text : item.name
             });
         });
     });
@@ -38,7 +38,7 @@ angular.module('foodplanner').controller('NewRecipeIngredientController', functi
         $scope.recipeSelectionList = $.map(items, function(item) {
             return ( {
                 value : item.recipeId,
-                text : item.description
+                text : item.name
             });
         });
     });

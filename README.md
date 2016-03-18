@@ -1,11 +1,11 @@
 # FoodPlanner
 This repository contains three projects
 
-FoodPlanner (/Foodplanner)
+##FoodPlanner (/Foodplanner)
 The actual java project
 
-Foodplanner_conf (/configuration)
+##Foodplanner_conf (/configuration)
 Scripts for configuring the webserver 
 
-FoodDatabase (/database)
+##FoodDatabase (/database)
 database scripts for creating and population database
